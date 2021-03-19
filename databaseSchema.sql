@@ -3,7 +3,7 @@ CREATE DATABASE dbswiss;
 
 
 --use extension uuid-ossp
---create extension if not exists "uuid-ossp";
+--RUN create extension if not exists "uuid-ossp"; //pgsl Terminal
 create table users
 (
     id  uuid  PRIMARY KEY DEFAULT uuid_generate_v4(),
