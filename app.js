@@ -6,7 +6,7 @@ const expressValidator = require('express-validator');
 
 
 //Routes Imports
-const userHome = require('./routes/dashboard');
+const userDashboard = require('./routes/dashboard');
 const authUser = require('./routes/authentication');
 
 //MiddleWares
@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(expressValidator());
 
-
-app.use('/api', userHome);
+//Routes
+app.use('/api', userDashboard);
 app.use('/api', authUser);
 
 
