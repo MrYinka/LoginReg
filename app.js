@@ -5,7 +5,7 @@ const cors = require('cors');
 
 
 //Routes Imports
-const userHome = require('./routes/home');
+const userHome = require('./routes/dashboard');
 const authUser = require('./routes/auth');
 
 //MiddleWares

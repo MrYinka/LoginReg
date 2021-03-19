@@ -76,7 +76,10 @@ exports.signIn = async (req, res) => {
         res.json({token});
 
     }catch (e) {
-
+        console.error(e.message);
+        res.status(500).json({
+            error: 'Internal Server Error'
+        });
     }
 };
 
