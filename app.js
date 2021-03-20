@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const cors = require('cors');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 
 
 //Routes Imports
@@ -12,9 +12,9 @@ const authUser = require('./routes/authentication');
 //MiddleWares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
-app.use(cors());
 app.use(express.json());
 app.use(expressValidator());
+app.use(cors());
 
 //Routes
 app.use('/api', userDashboard);
