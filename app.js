@@ -22,6 +22,6 @@ app.use('/api', authUser);
 
 
 const PORT = 8080;
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`NodeJS API is listening on PORT: ${8080}`);
 });
