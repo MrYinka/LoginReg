@@ -5,4 +5,5 @@ const  { signUp, signIn }  = require('../controllers/authentications');
 router.post('/signup', userSignUpValidator,  signUp);
 router.post('/signin', userSignInValidator, signIn);
 
+
 module.exports = router;
