@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const expressValidator = require('express-validator');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 
@@ -14,6 +15,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(expressValidator());
+app.use(cookieParser());
 app.use(cors());
 
 //Routes

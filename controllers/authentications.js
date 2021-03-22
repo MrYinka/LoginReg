@@ -1,6 +1,7 @@
 const pool  = require('../dbconfig');
 const bcrypt = require('bcrypt');
 const jwt = require('../utils/jsonwebtoken');
+const jwtr = require('jsonwebtoken');
 require('dotenv').config();
 
 //Register Users
@@ -15,7 +16,7 @@ exports.signUp = async (req, res) => {
             const hashed_password = await bcrypt.hash(password, salt);
             const newUser = await pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`, [first_name, last_name, email, hashed_password]);
             const token = jwt(newUser.rows[0].id);
-            res.json({token});
+            res.json({Message: 'Registered Successfully!'});
         }
     } catch (e) {
         console.error(e.message);
@@ -38,10 +39,21 @@ exports.signIn = async (req, res) => {
             return res.status(401).json({ "Message": "Incorrect Email and Password Combination" })
         }
         const token = jwt(user.rows[0].id);
-        res.json({token});
+        res.cookie('t', token);
+        const {id, first_name, last_name} = user.rows[0];
+        res.json({token, user: {id, first_name, last_name}});
     }catch (e) {
         console.error(e.message);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 //User Login Ends
+
+//Signout Method
+exports.signOut = (req, res) => {
+    res.clearCookie('t');
+    return res.json({
+        message: "Sign out successful!"
+    });
+};
+//Signout Method Ends
