@@ -4,8 +4,7 @@ import React from 'react';
 const App = () => {
   return (
     <div>
-      <h1>Welcome to Login Front End</h1>
-
+        <h1>Welcome to Login Front End</h1>
     </div>
   );
 }

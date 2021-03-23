@@ -1,5 +1,7 @@
+import {API} from "../config";
+
 export const signup = user => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signup`, {
+    return fetch(`${API}/signup`, {
         method: "POST",
         headers: {
             Accept: 'application/json',
@@ -17,7 +19,7 @@ export const signup = user => {
 
 
 export const signin = user => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+    return fetch(`${API}/signin`, {
         method: "POST",
         headers: {
             Accept: 'application/json',
