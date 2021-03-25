@@ -1,8 +1,6 @@
 //Functional Testing Coming up!
-
 import React from "react";
 import { render, screen, fireEvent } from '@testing-library/react';
-
 import Routes from "./Routes";
 
 
