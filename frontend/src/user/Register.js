@@ -11,11 +11,12 @@ const Register = () => {
         last_name: '',
         email: '',
         password: '',
+        confirm_password: '',
         error: '',
         success: false
     });
 
-    const {first_name, last_name, email, password, success, error} = values;
+    const { first_name, last_name, email, password, confirm_password, success, error } = values;
 
     const handleChange = name => event => {
         setValues({
@@ -28,18 +29,15 @@ const Register = () => {
 
     const registerButton = e => {
         e.preventDefault();
-        setValues({
-            ...values,
-            error: false
-        });
-        signup({first_name, last_name, email, password})
+        setValues({ ...values, error: false });
+        signup({first_name, last_name, email, password, confirm_password})
             .then(data => {
                 if(data.error){
                     setValues({
                         ...values,
                         error: data.error,
                         success: false
-                    })
+                    });
                 }else{
                     setValues({
                         ...values,
@@ -47,12 +45,12 @@ const Register = () => {
                         last_name: '',
                         email: '',
                         password: '',
+                        confirm_password: '',
                         error: '',
                         success: true
-                    })
+                    });
                 }
-            })
-
+            });
     };
 
     const registerForm = () => {
@@ -78,6 +76,11 @@ const Register = () => {
                     <input  onChange={handleChange('password')} type="password" className="form-control" value={password}/>
                 </div>
 
+               <div className="form-group">
+                   <label className="text-muted">Confirm Password</label>
+                   <input  onChange={handleChange('confirm_password')} type="password" className="form-control" value={confirm_password}/>
+               </div>
+
                <button className="btn btn-primary btn-block" onClick={registerButton}>Register</button>
            </form>
        );
@@ -99,11 +102,11 @@ const Register = () => {
         );
     };
 
+    const alert = error ? showError() : showSuccess();
 
     return  (
         <Layout title="Register" description="Register to Social App" className="container col-md-4 offset-md-4">
-            {showError()}
-            {showSuccess()}
+            {alert}
             {registerForm()}
         </Layout>
     );

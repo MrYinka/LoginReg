@@ -10,6 +10,7 @@ const cors = require('cors');
 const userDashboard = require('./routes/dashboard');
 const authUser = require('./routes/authentication');
 
+
 //MiddleWares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));

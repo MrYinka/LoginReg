@@ -1,4 +1,5 @@
-import {API} from "../config";
+import { API } from "../config";
+
 
 export const signup = user => {
     return fetch(`${API}/signup`, {
@@ -10,7 +11,7 @@ export const signup = user => {
         body: JSON.stringify(user)
     })
         .then(response => {
-            return response.json()
+            return response.json();
         })
         .catch(err => {
             console.log(err)

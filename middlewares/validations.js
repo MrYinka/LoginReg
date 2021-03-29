@@ -26,13 +26,20 @@ exports.userSignUpValidator = (req, res, next) => {
             max: 50
         });
 
-
+    //Password Validation
     req.check('password', 'Password is required').notEmpty();
     req.check('password')
         .isLength({min:8})
         .withMessage("Password must contain at least 8 characters")
         .matches(/\d/)
         .withMessage("Password must contain a number");
+
+    req.check('confirm_password', 'Password Confirm is required').notEmpty();
+    req.check('confirm_password')
+        .isLength({min:8})
+        .withMessage("Password Confirm must contain at least 8 characters")
+        .matches(/\d/)
+        .withMessage("Password Confirm must contain a number");
 
     const errors = req.validationErrors();
     //Show errors as they appear

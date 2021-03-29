@@ -7,8 +7,8 @@ import {signin, authenticate} from "../authenticationAPI";
 const Login = () => {
 
     const [values, setValues] = useState({
-        email: '',
-        password: '',
+        email: 'yinkarobert@mail.com',
+        password: 'jummie0205',
         error: '',
         loading: false,
         redirectToReferrer: false
@@ -56,7 +56,7 @@ const Login = () => {
         return (
             <form>
                 <div className="form-group">
-                    <label className="text-muted">Email</label>
+                    <label className="text-muted" htmlFor="email">Email</label>
                     <input onChange={handleChange('email')} type="email" className="form-control" value={email}/>
                 </div>
 

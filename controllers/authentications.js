@@ -7,19 +7,20 @@ require('dotenv').config();
 //Register Users
 exports.signUp = async (req, res) => {
     try {
-        const {first_name, last_name, email, password} = req.body;
+        const {first_name, last_name, email, password, confirm_password} = req.body;
         const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
         if(user.rows.length > 0){
-            res.status(401).json({ Message: 'User Already Exist!' })
+            res.status(401).json({ error: 'User Already Exist!' })
+        }else if(password != confirm_password){
+            res.status(401).json({ error: 'Password do not match' });
         }else{
             const salt = await bcrypt.genSalt(10);
             const hashed_password = await bcrypt.hash(password, salt);
             const newUser = await pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`, [first_name, last_name, email, hashed_password]);
             const token = jwt(newUser.rows[0].id);
-            res.json({Message: 'Registered Successfully!'});
+            res.status(200).json({ Message: 'Registered Successfully!' });
         }
     } catch (e) {
-        console.error(e.message);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
